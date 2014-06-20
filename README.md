@@ -269,7 +269,7 @@ Files and Directories
 
 Coding Style
 -------------
-- Doesn't use Tab to indent, use 4-spaces instead.
+- Don't use Tab to indent, use 4-spaces instead.
 
 
 
