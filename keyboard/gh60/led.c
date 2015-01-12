@@ -19,16 +19,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "stdint.h"
 #include "led.h"
 
-// We have the LED on D4!
+
 void led_set(uint8_t usb_led)
 {
     if (usb_led & (1<<USB_LED_CAPS_LOCK)) {
         // output low
-        DDRD |= (1<<4);
-        PORTD &= ~(1<<4);
+        DDRB |= (1<<2);
+        PORTB &= ~(1<<2);
     } else {
         // Hi-Z
-        DDRD &= ~(1<<4);
-        PORTD &= ~(1<<4);
+        DDRB &= ~(1<<2);
+        PORTB &= ~(1<<2);
     }
 }

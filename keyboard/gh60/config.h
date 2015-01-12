@@ -23,18 +23,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define VENDOR_ID       0xFEED
 #define PRODUCT_ID      0x6060
 #define DEVICE_VER      0x0001
-#define MANUFACTURER    scottc.me industries
-#define PRODUCT         LAZYDOG
-#define DESCRIPTION     lazydog firmware
-
-/* NOTE: These are the ports for each row/col
-    col:  0   1   2   3   4   5   6   7   8   9   10  11  12  13  14
-    pin: F7  B6  B5  B4  D7  C7  C6  D3  D2  D1   D0  B7  B3  B2  B1
-*/
+#define MANUFACTURER    geekhack
+#define PRODUCT         GH60
+#define DESCRIPTION     t.m.k. keyboard firmware for GH60
 
 /* key matrix size */
 #define MATRIX_ROWS 5
-#define MATRIX_COLS 15
+#define MATRIX_COLS 14
 
 /* define if matrix has ghost */
 //#define MATRIX_HAS_GHOST
