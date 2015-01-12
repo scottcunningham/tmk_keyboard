@@ -27,20 +27,16 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         FN1, A,   S,   D,   F,   G,   H,   J,   K,   L,   SCLN,QUOT,       ENT,  PGDN, \
         LSFT,Z,   X,   C,   V,   B,   N,   M,   COMM,DOT, SLSH,      RSFT, UP,   FN0,  \
         LCTL,LGUI,LALT,          SPC,           RALT,RGUI,APP, RCTL, LEFT, DOWN, RIGHT),
-    // 1: Locking function layer: with Grave in top-left in place of esc.
-    //
-    //
-   /* 0: qwerty
-    *
-    *
+    // 1: Locking function layer: with Grave in top-left in place of esc and also COLEMAK.
+    /* 0: qwerty
      * ,----------------------------------------------------------------.
      * |Grv|  1|  2|  3|  4|  5|  6|  7|  8|  9|  0| - | + | Bspac |Del |
      * |-----------------------------------------------------------|----|
-     * | Tab | q | w | e | r | t | y | u | i | o | p | { | } |  \  |PgUp|
+     * | Tab | q | w | f | p | g | j | l | u | y | ; | { | } |  \  |PgUp|
      * |-----------------------------------------------------------|----|
-     * | FnLk | a | s | d | f | g | h | j | k | l | ; | ' | Return |PgDn|
+     * | FnLk | a | r | s | t | d | h | n | r | i | o | ' | Return |PgDn|
      * |-----------------------------------------------------------|----|
-     * | LShift | z | x | c | v | b | n | m | , | . | /  |Rshft|UAr|Fn1 |
+     * | LShift | z | x | c | v | b | k | m | , | . | /  |Rshft|UAr|Fn1 |
      * |-----------------------------------------------------------|----|
      * |Ctr|Win|Alt|                       |Alt|Win|Men|Ctr|LAr|DAr|RAr |
      * `----------------------------------------------------------------.
