@@ -53,6 +53,7 @@ You can find some keyboard specific projects under `converter` and `keyboard` di
 * [macway](keyboard/macway/)                - [Compact keyboard mod][GH_macway] [retired]
 * [KMAC](keyboard/kmac/)                    - Korean custom keyboard
 * [Lightsaber](keyboard/lightsaber/)        - Korean custom keyboard
+* [Infinity](keyboard/infinity/)            - Massdrop [Infinity keyboard][Infinity]
 
 [GH_macway]:    http://geekhack.org/showwiki.php?title=Island:11930
 [GH_hhkb]:      http://geekhack.org/showwiki.php?title=Island:12047
@@ -72,6 +73,7 @@ You can find some keyboard specific projects under `converter` and `keyboard` di
 [PC98]:         http://en.wikipedia.org/wiki/NEC_PC-9801
 [Sun]:          http://en.wikipedia.org/wiki/Sun-3
 [IIGS]:         http://en.wikipedia.org/wiki/Apple_IIGS
+[Infinity]:     https://www.massdrop.com/buy/infinity-keyboard-kit
 
 
 
@@ -151,6 +153,7 @@ To avoid configuring accidentally additive salt key `KC_SPACE` also needs to be 
 - Disable Gui(`Left Gui`)
 - Swap Grave and Escape(`Grave`)
 - Swap BackSlash and BackSpace(`Back Slash`)
+- Enable NKRO on boot(`N`)
 
 #### Default Layer
 - Set Default Layer to 0(`0`)

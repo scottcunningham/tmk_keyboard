@@ -63,19 +63,22 @@ static uint8_t numkey2num(uint8_t code);
 static void switch_default_layer(uint8_t layer);
 
 
-typedef enum { ONESHOT, CONSOLE, MOUSEKEY } cmdstate_t;
-static cmdstate_t state = ONESHOT;
+command_state_t command_state = ONESHOT;
 
 
 bool command_proc(uint8_t code)
 {
-    switch (state) {
+    switch (command_state) {
         case ONESHOT:
             if (!IS_COMMAND())
                 return false;
             return (command_extra(code) || command_common(code));
+            break;
         case CONSOLE:
-            command_console(code);
+            if (IS_COMMAND())
+                return (command_extra(code) || command_common(code));
+            else
+                return (command_console_extra(code) || command_console(code));
             break;
 #ifdef MOUSEKEY_ENABLE
         case MOUSEKEY:
@@ -83,15 +86,22 @@ bool command_proc(uint8_t code)
             break;
 #endif
         default:
-            state = ONESHOT;
+            command_state = ONESHOT;
             return false;
     }
     return true;
 }
 
+/* TODO: Refactoring is needed. */
 /* This allows to define extra commands. return false when not processed. */
 bool command_extra(uint8_t code) __attribute__ ((weak));
 bool command_extra(uint8_t code)
+{
+    return false;
+}
+
+bool command_console_extra(uint8_t code) __attribute__ ((weak));
+bool command_console_extra(uint8_t code)
 {
     return false;
 }
@@ -151,6 +161,7 @@ static void print_eeconfig(void)
     print(".no_gui: "); print_dec(kc.no_gui); print("\n");
     print(".swap_grave_esc: "); print_dec(kc.swap_grave_esc); print("\n");
     print(".swap_backslash_backspace: "); print_dec(kc.swap_backslash_backspace); print("\n");
+    print(".nkro: "); print_dec(kc.nkro); print("\n");
 
 #ifdef BACKLIGHT_ENABLE
     backlight_config_t bc;
@@ -183,6 +194,7 @@ static bool command_common(uint8_t code)
         case KC_CAPSLOCK:
             if (host_get_driver()) {
                 host_driver = host_get_driver();
+                clear_keyboard();
                 host_set_driver(0);
                 print("Locked.\n");
             } else {
@@ -202,7 +214,7 @@ static bool command_common(uint8_t code)
             command_console_help();
             print("\nEnter Console Mode\n");
             print("C> ");
-            state = CONSOLE;
+            command_state = CONSOLE;
             break;
         case KC_PAUSE:
             clear_keyboard();
@@ -387,14 +399,14 @@ static bool command_console(uint8_t code)
         case KC_Q:
         case KC_ESC:
             print("\nQuit Console Mode\n");
-            state = ONESHOT;
+            command_state = ONESHOT;
             return false;
 #ifdef MOUSEKEY_ENABLE
         case KC_M:
             mousekey_console_help();
             print("\nEnter Mousekey Console\n");
             print("M0>");
-            state = MOUSEKEY;
+            command_state = MOUSEKEY;
             return true;
 #endif
         default:
@@ -554,7 +566,7 @@ static bool mousekey_console(uint8_t code)
             mousekey_param = 0;
             print("\nQuit Mousekey Console\n");
             print("C> ");
-            state = CONSOLE;
+            command_state = CONSOLE;
             return false;
         case KC_P:
             mousekey_param_print();
