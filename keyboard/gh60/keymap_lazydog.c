@@ -22,12 +22,14 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * `----------------------------------------------------------------.
     */
     KEYMAP(
-        ESC, 1,   2,   3,   4,   5,   6,   7,   8,   9,   0,   MINS,EQL,   BSPC, GRV, \
-        TAB, Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P,   LBRC,RBRC,  BSLS, GRV, \
-        FN1, A,   S,   D,   F,   G,   H,   J,   K,   L,   SCLN,QUOT,       ENT,  GRV, \
-        LSFT,Z,   X,   C,   V,   B,   N,   M,   COMM,DOT, SLSH,      RSFT, UP,   FN0, \
+        ESC, 1,   2,   3,   4,   5,   6,   7,   8,   9,   0,   MINS,EQL,   BSPC, DEL,  \
+        TAB, Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P,   LBRC,RBRC,  BSLS, PGUP, \
+        FN1, A,   S,   D,   F,   G,   H,   J,   K,   L,   SCLN,QUOT,       ENT,  PGDN, \
+        LSFT,Z,   X,   C,   V,   B,   N,   M,   COMM,DOT, SLSH,      RSFT, UP,   FN0,  \
         LCTL,LGUI,LALT,          SPC,           RALT,RGUI,APP, RCTL, LEFT, DOWN, RIGHT),
     // 1: Locking function layer: with Grave in top-left in place of esc.
+    //
+    //
    /* 0: qwerty
     *
     *
@@ -42,7 +44,13 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |-----------------------------------------------------------|----|
      * |Ctr|Win|Alt|                       |Alt|Win|Men|Ctr|LAr|DAr|RAr |
      * `----------------------------------------------------------------.
-    */
+     */
+    KEYMAP(
+        GRV, 1,   2,   3,   4,   5,   6,   7, 8,   9,   0,   MINS,EQL,   BSPC, DEL,  \
+        TAB, Q,   W,   F,   P,   G,   J,   L, U,   Y,   SCLN,LBRC,RBRC,  BSLS, PGUP, \
+        BSPC,A,   R,   S,   T,   D,   H,   N, E,   I,   O,   QUOT,       ENT,  PGDN, \
+        LSFT,Z,   X,   C,   V,   B,   K,   M, COMM,DOT, SLSH,      RSFT, UP,   FN0,  \
+        LCTL,LGUI,LALT,          SPC,         RALT,RGUI,APP, RCTL, LEFT, DOWN, RIGHT),
     KEYMAP(
         GRV, TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS, TRNS, TRNS, \
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS, TRNS, TRNS, \
