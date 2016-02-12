@@ -30,21 +30,21 @@ const uint8_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
 
     /* Layer 1: HHKB mode (HHKB Fn)
      * ,-----------------------------------------------------------.
-     * |Pwr| F1| F2| F3| F4| F5| F6| F7| F8| F9|F10|F11|F12|Ins|Del|
+     * | ` | F1| F2| F3| F4| F5| F6| F7| F8| F9|F10|F11|F12|Ins|Del|
      * |-----------------------------------------------------------|
-     * |Caps |   |   |   |   |   |   |   |Psc|Slk|Pus|Up |   |Backs|
+     * |Caps |   |   |   |   |   |   |   |Psc|Slk|Pus|Up |   | Del |
      * |-----------------------------------------------------------|
      * |      |VoD|VoU|Mut|   |   |  *|  /|Hom|PgU|Lef|Rig|Enter   |
      * |-----------------------------------------------------------|
-     * |        |   |   |   |   |   |  +|  -|End|PgD|Dow|      |   |
+     * |        |Stp|Ply|Pau|   |   |  +|  -|End|PgD|Dow|      |   |
      * `-----------------------------------------------------------'
      *       |   |     |                       |     |   |
      *       `-------------------------------------------'
      */
-    KEYMAP(PWR, F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9,  F10, F11, F12, INS, DEL,   \
-           CAPS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,PSCR,SLCK,PAUS, UP, TRNS, BSPC,      \
-           TRNS,VOLD,VOLU,MUTE,TRNS,TRNS,PAST,PSLS,HOME,PGUP,LEFT,RGHT,PENT,            \
-           TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,PPLS,PMNS,END, PGDN,DOWN,TRNS,TRNS,            \
+    KEYMAP(GRV, F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9,  F10, F11, F12, INS, DEL,   \
+           CAPS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,PSCR,SLCK,PAUS, UP, TRNS, DEL,      \
+           TRNS,MUTE,VOLD,VOLU,TRNS,TRNS,PAST,PSLS,HOME,PGUP,LEFT,RGHT,PENT,            \
+           TRNS,MSTP,MPRV,MNXT,TRNS,TRNS,PPLS,PMNS,END, PGDN,DOWN,TRNS,TRNS,            \
                 TRNS,TRNS,          TRNS,               TRNS,TRNS),
 };
 
@@ -68,9 +68,9 @@ const uint16_t fn_actions[] __attribute__ ((section (".keymap.fn_actions"))) = {
     [10] = ACTION_LAYER_TAP_TOGGLE(1),
     [11] = ACTION_LAYER_TAP_TOGGLE(2),
     [12] = ACTION_LAYER_TAP_TOGGLE(3),
-    [13] = ACTION_LAYER_TAP_KEY(1, KC_BSLASH),
-    [14] = ACTION_LAYER_TAP_KEY(2, KC_TAB),
-    [15] = ACTION_LAYER_TAP_KEY(3, KC_ENTER),
+    [13] = ACTION_LAYER_TAP_KEY(1, KC_A),
+    [14] = ACTION_LAYER_TAP_KEY(2, KC_F),
+    [15] = ACTION_LAYER_TAP_KEY(3, KC_J),
     [16] = ACTION_LAYER_TAP_KEY(4, KC_SPACE),
     [17] = ACTION_LAYER_TAP_KEY(5, KC_SCOLON),
     [18] = ACTION_LAYER_TAP_KEY(6, KC_QUOTE),
