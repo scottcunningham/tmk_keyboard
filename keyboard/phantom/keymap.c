@@ -121,7 +121,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #elif defined(LAYOUT_ANSI_150)
     #include "keymap_ansi_150.h"
 #else
-    #include "keymap_ansi.h"
+    #include "keymap_iso_150.h"
 #endif
 
 #define KEYMAPS_SIZE    (sizeof(keymaps) / sizeof(keymaps[0]))
