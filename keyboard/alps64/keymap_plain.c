@@ -1,21 +1,17 @@
 #include "keymap_common.h"
 
-#ifdef KEYMAP_SECTION_ENABLE
-const uint8_t keymaps[][MATRIX_ROWS][MATRIX_COLS] __attribute__ ((section (".keymap.keymaps"))) = {
-#else
 const uint8_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
-#endif
     /* 0: qwerty
      * ,-----------------------------------------------------------.
-     * |Esc|  1|  2|  3|  4|  5|  6|  7|  8|  9|  0|  -|  =|  #|Bsp|
+     * |Esc|  1|  2|  3|  4|  5|  6|  7|  8|  9|  0|  -|  =|  Bsp  |
      * |-----------------------------------------------------------|
      * |Tab  |  Q|  W|  E|  R|  T|  Y|  U|  I|  O|  P|  [|  ]|  \  |
      * |-----------------------------------------------------------|
      * |LCtrl |  A|  S|  D|  F|  G|  H|  J|  K|  L|  ;|  '|Enter   |
      * |-----------------------------------------------------------|
-     * |Shft|  \|  Z|  X|  C|  V|  B|  N|  M|  ,|  .|  /|Shift |Esc|
-     * |-----------------------------------------------------------'
-     * |Ctrl|Gui |Alt |         Space         |App |Alt |Gui |Caps |
+     * |  Shft  |  Z|  X|  C|  V|  B|  N|  M|  ,|  .|  /|   Fn0    |
+     * |-----------------------------------------------------------|
+     * |Ctrl|Gui |Alt |         Space         |App |Alt |Gui |Lock |
      * `-----------------------------------------------------------'
      */
     KEYMAP( \
@@ -26,14 +22,14 @@ const uint8_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
         LCTL,LGUI,LALT,          SPC,                     RALT, RGUI,APP,LCAP),
     /* 1: fn layer
      * ,-----------------------------------------------------------.
-     * |`  | F1| F2| F3| F4| F5| F6| F7|  8|  9|  0|  -|  =|  #|Bsp|
+     * |`  | F1| F2| F3| F4| F5| F6| F7| F8| F9|F10|F11|F12|  Bsp  |
      * |-----------------------------------------------------------|
-     * |Tab  |  Q|  W|  E|  R|  T|  Y|  U|  I|  O|  P|  [|  ]|  \  |
+     * |Tab  |  Q|  W|  E|  R|  T|  Y|  U|  I|  O|PSc| Up|  ]|  \  |
      * |-----------------------------------------------------------|
-     * |Caps  |  A|  S|  D|  F|  G|  H|  J|  K|  L|  ;|  '|Enter   |
+     * |Caps  |  A|  S|  D|  F|  G|  H|  J|Hom|PgU|Lft|Rgt|Enter   |
      * |-----------------------------------------------------------|
-     * |Shft|  \|  Z|  X|  C|  V|  B|  N|  M|  ,|  .|  /|Shift |Esc|
-     * |-----------------------------------------------------------'
+     * |  Shft  |  Z|  X|  C|  V|  B|  N|  M|End|PgD|Dwn|   Fn0    |
+     * |-----------------------------------------------------------|
      * |Ctrl|Gui |Alt |         Space         |App |Alt |Gui |Ctrl |
      * `-----------------------------------------------------------'
      */
@@ -47,10 +43,7 @@ const uint8_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
 
 
 };
-#ifdef KEYMAP_SECTION_ENABLE
-const uint16_t fn_actions[] __attribute__ ((section (".keymap.fn_actions"))) = {
- //[0]  = ACTION_LAYER_MOMENTARY(1),
+
+const uint16_t fn_actions[] PROGMEM = {
+ [0]  = ACTION_LAYER_MOMENTARY(1),
 };
-#else
-const uint16_t fn_actions[] PROGMEM = {};
-#endif
