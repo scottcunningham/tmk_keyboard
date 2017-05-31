@@ -37,15 +37,6 @@ void backlight_enable(void);
 void backlight_disable(void);
 inline void backlight_set_raw(uint8_t raw);
 
-#ifndef SOFTPWM_LED_ENABLE
-#ifdef GH60_REV_CHN
-#else
-#define SOFTPWM_TIMER_TOP F_CPU/(256*64)
-uint8_t softpwm_ocr = 0;
-uint8_t softpwm_ocr_buff = 0;
-#endif
-#endif
-
 static const uint8_t backlight_table[] PROGMEM = {
     0, 16, 128, 255
 };
@@ -59,24 +50,12 @@ void backlight_enable(void)
 #ifdef SOFTPWM_LED_ENABLE
     softpwm_led_enable_all();
 #else
-#if defined(GH60_REV_CHN)
     // Turn on PWM
     DDRB |= (1<<PB6);
     cli();
     TCCR1A |= ((1<<WGM10) | (1<<COM1B1));
     TCCR1B |= ((1<<CS11) | (1<<CS10));
     sei();
-#else
-    DDRF  |= (1<<PF7 | 1<<PF6 | 1<<PF5 | 1<<PF4);
-    PORTF |= (1<<PF7 | 1<<PF6 | 1<<PF5 | 1<<PF4);
-    cli();
-    TCCR1B |= (1<<WGM12);
-    TCCR1B |= (1<<CS10);
-    OCR1AH = (SOFTPWM_TIMER_TOP>>8)&0xff;
-    OCR1AL = SOFTPWM_TIMER_TOP&0xff;
-    TIMSK1 |= (1<<OCIE1A);
-    sei();
-#endif
 #endif
 }
 
@@ -85,7 +64,6 @@ void backlight_disable(void)
 #ifdef SOFTPWM_LED_ENABLE
     softpwm_led_disable_all();
 #else
-#if defined(GH60_REV_CHN)
     // Turn off PWM
     cli();
     DDRB &= ~(1<<PB6);
@@ -93,15 +71,6 @@ void backlight_disable(void)
     TCCR1B &= ~( (1<<CS11) | (1<<CS10) );
     sei();
     OCR1B = 0;
-#else
-    DDRF &= ~(1<<PF7 | 1<<PF6 | 1<<PF5 | 1<<PF4);
-    cli();
-    TCCR1B &= ~(1<<WGM12);
-    TCCR1B &= ~(1<<CS10);
-    TIMSK1 &= ~(1<<OCIE1A);
-    sei();
-    OCR1A = 0;
-#endif
 #endif
 }
 
@@ -188,11 +157,7 @@ inline void backlight_set_raw(uint8_t raw)
         softpwm_led_set(i, raw);
     }
 #else
-#if defined(GH60_REV_CHN)
     OCR1B = raw;
-#else
-    softpwm_ocr_buff = raw;
-#endif
 #endif
 }
 
@@ -201,29 +166,17 @@ inline void backlight_set_raw(uint8_t raw)
 
 void softpwm_led_init(void)
 {
-#if defined(GH60_REV_CHN)
     DDRB |= (1<<PB6);
-#else
-    DDRF  |= (1<<PF7 | 1<<PF6 | 1<<PF5 | 1<<PF4);
-#endif
 }
 
 void softpwm_led_on(uint8_t index)
 {
-#if defined(GH60_REV_CHN)
     PORTB |= (1<<PB6);
-#else
-    PORTF &= ~(1<<PF7 | 1<<PF6 | 1<<PF5 | 1<<PF4);
-#endif
 }
 
 void softpwm_led_off(uint8_t index)
 {
-#if defined(GH60_REV_CHN)
     PORTB &= ~(1<<PB6);
-#else
-    PORTF |= (1<<PF7 | 1<<PF6 | 1<<PF5 | 1<<PF4);
-#endif
 }
 
 #endif
@@ -250,46 +203,6 @@ void hook_matrix_change(keyevent_t event)
 }
 #endif
 
-#ifdef RGB_LED_ENABLE
-#ifdef CUSTOM_LED_ENABLE
-void softpwm_led_custom(void)
-{
-}
-
-void fading_led_custom(uint8_t *value)
-{
-    rgb_led_set_brightness(value[0], false);
-}
-
-void breathing_led_custom(uint8_t *value)
-{
-    rgb_led_set_brightness(value[0], false);
-}
-#endif
-#endif
-#endif
-
-
-#ifndef SOFTPWM_LED_ENABLE
-#if defined(GH60_REV_CHN)
-#else
-ISR(TIMER1_COMPA_vect)
-{
-    static uint8_t pwm = 0;
-    pwm++;
-    // LED on
-    if (pwm == 0) {
-        //PORTB |= (1<<PB6);
-        PORTF &= ~(1<<PF7 | 1<<PF6 | 1<<PF5 | 1<<PF4);
-        softpwm_ocr = softpwm_ocr_buff;
-    }
-    // LED off
-    if (pwm == softpwm_ocr) {
-        //PORTB &= ~(1<<PB6);
-        PORTF |= (1<<PF7 | 1<<PF6 | 1<<PF5 | 1<<PF4);
-    }
-}
-#endif
 #endif
 
 #endif

@@ -19,10 +19,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define CONFIG_H
 
 
-// This is my cheapo China board
-#define GH60_REV_CHN
-
-
 /* USB Device descriptor parameter */
 #define VENDOR_ID       0xFEED
 #define PRODUCT_ID      0x6060
@@ -64,27 +60,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /* LED mapping */
 #ifdef LEDMAP_ENABLE
-#if defined(GH60_REV_CHN)
 #define LED_COUNT 2
 #define LEDMAP_V2
 #define LED1_PORT   B
 #define LED1_BIT    2
 #define LED2_PORT   B
 #define LED2_BIT    6
-#else
-#define LED_COUNT 5
-#define LEDMAP_V2
-#define LED1_PORT   B
-#define LED1_BIT    2
-#define LED2_PORT   F
-#define LED2_BIT    7
-#define LED3_PORT   F
-#define LED3_BIT    6
-#define LED4_PORT   F
-#define LED4_BIT    5
-#define LED5_PORT   F
-#define LED5_BIT    4
-#endif
 #endif
 
 /* Mechanical locking support. Use KC_LCAP, KC_LNUM or KC_LSCR instead in keymap */
