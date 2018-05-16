@@ -14,11 +14,11 @@
 #     make flash   # to load the boot loader into flash
 #     make lock    # to protect the boot loader from overwriting
 
-DEVICE = atmega8
-BOOTLOADER_ADDRESS = 1800
+DEVICE = atmega32
+BOOTLOADER_ADDRESS = 0x7000
 F_CPU = 12000000
-FUSEH = 0xc0
-FUSEL = 0x9f
+FUSEH = 0xda
+FUSEL = 0xef
 # Fuse high byte:
 # 0xc0 = 1 1 0 0   0 0 0 0 <-- BOOTRST (boot reset vector at 0x1800)
 #        ^ ^ ^ ^   ^ ^ ^------ BOOTSZ0
@@ -38,7 +38,7 @@ FUSEL = 0x9f
 
 ###############################################################################
 
-AVRDUDE = avrdude -c stk500v2 -P avrdoper -p $(DEVICE)
+AVRDUDE = avrdude -c usbasp -P /dev/USBasp -p $(DEVICE)
 
 LDFLAGS += -Wl,--relax,--gc-sections -Wl,--section-start=.text=$(BOOTLOADER_ADDRESS)
 
