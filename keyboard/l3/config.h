@@ -41,7 +41,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 )
 
 /* Let firmware know that rgb leds are not soldered */
-#define RGB_LEDS_NOT_SOLDERED
+//#define RGB_LEDS_NOT_SOLDERED
 
 /* Mouse movement tuning */
 #define MOUSEKEY_DELAY          100

@@ -55,7 +55,7 @@ SRC = \
 	tinycmd/tinycmdmain.c
 
 # The keymap used for the firmware
-SRC := keymap_$(KEYMAP).c $(SRC)
+SRC := keymap_scott.c $(SRC)
 
 CONFIG_H = config.h
 
